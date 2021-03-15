@@ -1,4 +1,4 @@
-package kim.hanjie.easy.opt;
+package kim.hanjie.common.opt;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * @date 2021/3/10
  */
 @Component
-@ConfigurationProperties(prefix = "easy.opt")
+@ConfigurationProperties(prefix = "kim.common.opt")
 public class OptLogProperties {
 
     private Integer ignoreLevel;

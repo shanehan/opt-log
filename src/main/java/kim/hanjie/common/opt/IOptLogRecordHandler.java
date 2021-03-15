@@ -1,4 +1,4 @@
-package kim.hanjie.easy.opt;
+package kim.hanjie.common.opt;
 
 /**
  * 日志处理器

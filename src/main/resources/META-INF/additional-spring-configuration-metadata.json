@@ -1,8 +1,9 @@
 {
   "properties": [
     {
-      "name": "easy.opt.ignoreLevel",
+      "name": "kim.common.opt.ignoreLevel",
       "type": "java.lang.Integer",
+      "sourceType" : "kim.hanjie.common.opt.OptLogProperties",
       "description": "忽略opt log的级别，数值越小级别越高，大于此级别的都会被忽略，默认值为Integer.MAX_VALUE."
     }
   ]

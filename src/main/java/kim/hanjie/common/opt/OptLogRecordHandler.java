@@ -1,4 +1,4 @@
-package kim.hanjie.easy.opt;
+package kim.hanjie.common.opt;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

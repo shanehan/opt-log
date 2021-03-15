@@ -1,4 +1,4 @@
-package kim.hanjie.easy.opt;
+package kim.hanjie.common.opt;
 
 import org.springframework.context.expression.MethodBasedEvaluationContext;
 import org.springframework.core.ParameterNameDiscoverer;

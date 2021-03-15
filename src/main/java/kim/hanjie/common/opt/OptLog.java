@@ -1,4 +1,4 @@
-package kim.hanjie.easy.opt;
+package kim.hanjie.common.opt;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

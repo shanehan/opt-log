@@ -11,7 +11,7 @@
 maven中引入
 ~~~xml
         <dependency>
-            <groupId>kim.hanjie.easy</groupId>
+            <groupId>kim.hanjie.common</groupId>
             <artifactId>opt-log</artifactId>
             <version>0.1.0</version>
         </dependency>
@@ -117,8 +117,8 @@ bizId
 方法返回值Optional isPresent为true **success**  
 
 
-判断策略[IOptStatusPolicy](/src/main/java/kim/hanjie/easy/opt/IOptStatusPolicy.java)
-可以自己实现此接口或继承[OptStatusPolicy](/src/main/java/kim/hanjie/easy/opt/OptStatusPolicy.java)来实现自己的判断  
+判断策略[IOptStatusPolicy](/src/main/java/kim/hanjie/common/opt/IOptStatusPolicy.java)
+可以自己实现此接口或继承[OptStatusPolicy](/src/main/java/kim/hanjie/common/opt/OptStatusPolicy.java)来实现自己的判断  
 如：  
 调用方法返回Result对象，包含成功失败信息  
 方法内部用抛异常方式来处理数据检查，操作失败等，这种不是exception，而是fail    
@@ -190,7 +190,7 @@ public class UserService {
 updatePassword用来更新用户密码，可以通过用户自己的请求来执行（操着为用户自己）  
 也可通过后台管理员来重置密码用（操作者为admin管理员） 
 
-可以通过[OptContext](/src/main/java/kim/hanjie/easy/opt/OptContext.java)来设置操作者的上下文  
+可以通过[OptContext](/src/main/java/kim/hanjie/common/opt/OptContext.java)来设置操作者的上下文  
 可以通过servlet filter来统一设置哪些url是那种类型用户访问  
 OptContext.put("adminId", "" + 100); 设置用户（此处写死仅作实例） 
 OptContext.put("url", httpRequest.getRequestURI()); 也可以写入其他信息  
@@ -222,15 +222,16 @@ public class AdminOptContextFilter implements Filter {
 可以通过设置ignoreLevel来忽略一些操作日志的记录 
 当日志级别大于ignoreLevel时，操作日志将被忽略掉
 ~~~yaml
-easy:
-  opt:
-    ignoreLevel: 3
+kim:
+  common:
+    opt:
+      ignoreLevel: 3
 ~~~
-easy.opt.ignoreLevel 默认为Integer.MAX
+kim.common.opt.ignoreLevel 默认为Integer.MAX
 
 
 ### 记录器
-实现接口[IOptLogRecorder](/src/main/java/kim/hanjie/easy/opt/IOptLogRecorder.java)  
+实现接口[IOptLogRecorder](/src/main/java/kim/hanjie/common/opt/IOptLogRecorder.java)  
 ~~~java
 public interface IOptLogRecorder {
     /**

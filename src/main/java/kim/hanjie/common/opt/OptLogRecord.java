@@ -1,4 +1,5 @@
-package kim.hanjie.easy.opt;
+package kim.hanjie.common.opt;
+
 
 import java.util.Map;
 

@@ -1,4 +1,4 @@
-package kim.hanjie.easy.opt;
+package kim.hanjie.common.opt;
 
 import java.lang.reflect.Method;
 import java.util.Optional;
