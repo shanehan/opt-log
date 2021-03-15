@@ -251,3 +251,10 @@ record中可通过getContextValue()方法获取更多参数，如操作方（adm
 record方法用于记录，OptLogRecord.getOptDescription()来获取操作日志信息
 日志记录是在单独在一个线程里来处理  
 此处可以写数据库，或者通过MQ把操作日志发送到相应的服务去
+
+### SpEL上下文可以获取内容
+* _errorMsg 获取抛异常时的错误信息
+* _retObj 返回值 #_retObj.message 获取返回对象中的message属性
+* _context OptContext上下文 #_context.get('reqId') 获取上下文中的reqId值
+
+[SpEL语法学习](http://itmyhome.com/spring/expressions.html)
