@@ -259,3 +259,21 @@ record方法用于记录，OptLogRecord.getOptDescription()来获取操作日志
 * _context OptContext上下文 #_context.get('reqId') 获取上下文中的reqId值
 
 [SpEL语法学习](http://itmyhome.com/spring/expressions.html)
+
+### 例子
+如果一个方法既可以新增，又可以编辑，可以通过三元运算
+~~~
+#user.id == null ? '新增' : '编辑'
+#user.id == null ? #_retObj.data : #user.id
+~~~
+~~~java
+public class UserService {
+    @OptLog(success = "#user.id == null ? '新增' : '编辑'",
+            fail = "'设置失败：' + #_errorMsg",
+            bizId = "#user.id == null ? #_retObj.data : #user.id",
+            level = 5)
+    public Result<Long> editUserLevel5(UserDO user) {
+        return Result.ofSuccess(1L);
+    }
+}
+~~~
