@@ -43,9 +43,6 @@ public class OptLogAutoConfiguration {
     public OptLogConfig optLogConfig(OptLogProperties optLogProperties) {
         OptLogConfig config = new OptLogConfig();
         Integer ignoreLevel = optLogProperties.getIgnoreLevel();
-        if (ignoreLevel == null) {
-            ignoreLevel = Integer.MAX_VALUE;
-        }
         config.setIgnoreLevel(ignoreLevel);
         return config;
     }

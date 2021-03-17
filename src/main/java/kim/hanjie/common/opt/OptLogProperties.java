@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "kim.common.opt")
 public class OptLogProperties {
 
-    private Integer ignoreLevel;
+    private Integer ignoreLevel = Integer.MAX_VALUE;
 
     public Integer getIgnoreLevel() {
         return ignoreLevel;

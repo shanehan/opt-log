@@ -13,7 +13,7 @@ maven中引入
         <dependency>
             <groupId>kim.hanjie.common</groupId>
             <artifactId>opt-log</artifactId>
-            <version>0.1.0</version>
+            <version>0.1.1</version>
         </dependency>
 ~~~
 
@@ -276,4 +276,18 @@ public class UserService {
         return Result.ofSuccess(1L);
     }
 }
+~~~
+获取列表中对象的id列表  
+users中3个User对象，id分别为100，101，102
+~~~java
+public class UserService {
+    @OptLog(success = "'编辑用户: ' + #users.![id]", bizId = "#users.![id]")
+    public Result editUsers(List<UserDO> users) {
+        return Result.ofSuccess();
+    }
+}
+~~~
+~~~
+success = 编辑用户: 100,101,102
+bizId = 100,101,102
 ~~~

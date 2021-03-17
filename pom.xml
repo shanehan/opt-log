@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>kim.hanjie.common</groupId>
     <artifactId>opt-log</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
 
     <name>opt-log</name>
     <description>基于springboot、annotation的操作日志</description>
