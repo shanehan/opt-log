@@ -101,10 +101,9 @@ public class OptLogInterceptor implements MethodInterceptor {
         }
         templates.add(optLog.operator());
         templates.add(optLog.bizId());
-        templates.add(optLog.module());
         Map<String, String> process = process(templates, targetClass, method, args, retObj, errorMsg, optContext);
         return new OptLogRecord(status, process.get(optLog.success()), process.get(optLog.fail()), process.get(optLog.exception()), process.get(optLog.operator())
-                , process.get(optLog.bizId()), process.get(optLog.module()), optLog.level(), targetClass.getName(), method.getName(), optContext);
+                , process.get(optLog.bizId()), optLog.module(), optLog.level(), targetClass, method.getName(), optContext);
     }
 
     private Map<String, String> process(Collection<String> templates, Class<?> targetClass, Method method, Object[] args, Object retObj, String errorMsg, Map<String, String> optContext) {

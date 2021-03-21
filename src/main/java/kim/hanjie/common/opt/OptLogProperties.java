@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 public class OptLogProperties {
 
     private Integer ignoreLevel = Integer.MAX_VALUE;
+    private Integer order;
 
     public Integer getIgnoreLevel() {
         return ignoreLevel;
@@ -19,5 +20,13 @@ public class OptLogProperties {
 
     public void setIgnoreLevel(Integer ignoreLevel) {
         this.ignoreLevel = ignoreLevel;
+    }
+
+    public Integer getOrder() {
+        return order;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
     }
 }

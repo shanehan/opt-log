@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>kim.hanjie.common</groupId>
     <artifactId>opt-log</artifactId>
-    <version>0.1.1</version>
+    <version>0.1.2</version>
 
     <name>opt-log</name>
-    <description>基于springboot、annotation的操作日志</description>
+    <description>基于SpringBoot、Spring表达式语言 (SpEL)、annotation的操作日志</description>
     <url>https://github.com/shanehan/opt-log</url>
 
 

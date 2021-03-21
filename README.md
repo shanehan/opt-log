@@ -5,7 +5,6 @@
 * 使用annotation来标注方法，标记操作内容
 * 使用SpEL来动态生成操作日志内容，使操作日志记录更加详细（记录操作内容ID等关键信息）
 * 同一个方法，不同类型用户（admin，user等）使用时，获取不同的操作者
-* 支持springboot2.0以上版本
 
 ### 使用
 maven中引入
@@ -13,7 +12,7 @@ maven中引入
         <dependency>
             <groupId>kim.hanjie.common</groupId>
             <artifactId>opt-log</artifactId>
-            <version>0.1.1</version>
+            <version>0.1.2</version>
         </dependency>
 ~~~
 

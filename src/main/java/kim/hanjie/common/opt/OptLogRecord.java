@@ -17,11 +17,11 @@ public class OptLogRecord {
     private String bizId;
     private String module;
     private int level;
-    private String clazz;
+    private Class clazz;
     private String method;
     private Map<String, String> context;
 
-    public OptLogRecord(OptStatus status, String success, String fail, String exception, String operator, String bizId, String module, int level, String clazz, String method, Map<String, String> context) {
+    public OptLogRecord(OptStatus status, String success, String fail, String exception, String operator, String bizId, String module, int level, Class clazz, String method, Map<String, String> context) {
         this.status = status;
         this.success = success;
         this.fail = fail;
@@ -77,7 +77,7 @@ public class OptLogRecord {
         return level;
     }
 
-    public String getClazz() {
+    public Class getClazz() {
         return clazz;
     }
 

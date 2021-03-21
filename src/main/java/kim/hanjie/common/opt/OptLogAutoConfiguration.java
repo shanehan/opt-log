@@ -21,6 +21,9 @@ public class OptLogAutoConfiguration {
         DefaultPointcutAdvisor advisor = new DefaultPointcutAdvisor();
         advisor.setAdvice(optLogInterceptor(recorders, optLogProperties));
         advisor.setPointcut(optLogPointcut());
+        if (optLogProperties.getOrder() != null) {
+            advisor.setOrder(optLogProperties.getOrder());
+        }
         return advisor;
     }
 
