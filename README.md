@@ -12,7 +12,7 @@ maven中引入
         <dependency>
             <groupId>kim.hanjie.common</groupId>
             <artifactId>opt-log</artifactId>
-            <version>0.1.2</version>
+            <version>0.1.3</version>
         </dependency>
 ~~~
 
