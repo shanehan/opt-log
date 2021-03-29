@@ -73,7 +73,7 @@ public class OptLogInterceptor implements MethodInterceptor {
         try {
             for (OptLog optLog : optLogs) {
                 // 检查是否要打印
-                if (!need(status, optLog)) {
+                if (!statusCheck(status, optLog)) {
                     continue;
                 }
                 // 检查打印级别
@@ -102,7 +102,7 @@ public class OptLogInterceptor implements MethodInterceptor {
         templates.add(optLog.operator());
         templates.add(optLog.bizId());
         Map<String, String> process = process(templates, targetClass, method, args, retObj, errorMsg, optContext);
-        return new OptLogRecord(status, process.get(optLog.success()), process.get(optLog.fail()), process.get(optLog.exception()), process.get(optLog.operator())
+        return new OptLogRecord(status, System.currentTimeMillis(), process.get(optLog.success()), process.get(optLog.fail()), process.get(optLog.exception()), process.get(optLog.operator())
                 , process.get(optLog.bizId()), optLog.module(), optLog.level(), targetClass, method.getName(), optContext);
     }
 
@@ -137,7 +137,7 @@ public class OptLogInterceptor implements MethodInterceptor {
         return optStatusPolicy.returnStatus(method, retObj);
     }
 
-    private boolean need(OptStatus optStatus, OptLog optLog) {
+    private boolean statusCheck(OptStatus optStatus, OptLog optLog) {
         OptLog.OptLogMode[] optLogModes = optLog.logMode();
         for (OptLog.OptLogMode optLogMode : optLogModes) {
             if (optLogMode.isAll()) {

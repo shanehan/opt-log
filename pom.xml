@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>kim.hanjie.common</groupId>
     <artifactId>opt-log</artifactId>
-    <version>0.1.3</version>
+    <version>0.1.4</version>
 
     <name>opt-log</name>
     <description>基于SpringBoot、Spring表达式语言 (SpEL)、annotation的操作日志</description>

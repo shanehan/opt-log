@@ -10,6 +10,7 @@ import java.util.Map;
 public class OptLogRecord {
 
     private OptStatus status;
+    private long optTime;
     private String success;
     private String fail;
     private String exception;
@@ -21,8 +22,9 @@ public class OptLogRecord {
     private String method;
     private Map<String, String> context;
 
-    public OptLogRecord(OptStatus status, String success, String fail, String exception, String operator, String bizId, String module, int level, Class clazz, String method, Map<String, String> context) {
+    public OptLogRecord(OptStatus status, long optTime, String success, String fail, String exception, String operator, String bizId, String module, int level, Class clazz, String method, Map<String, String> context) {
         this.status = status;
+        this.optTime = optTime;
         this.success = success;
         this.fail = fail;
         this.exception = exception;
@@ -47,6 +49,10 @@ public class OptLogRecord {
 
     public OptStatus getStatus() {
         return status;
+    }
+
+    public long getOptTime() {
+        return optTime;
     }
 
     public String getSuccess() {
@@ -103,6 +109,7 @@ public class OptLogRecord {
     public String toString() {
         return "OptLogRecord{" +
                 "status=" + status +
+                ", optTime=" + optTime +
                 ", success='" + success + '\'' +
                 ", fail='" + fail + '\'' +
                 ", exception='" + exception + '\'' +
@@ -110,7 +117,7 @@ public class OptLogRecord {
                 ", bizId='" + bizId + '\'' +
                 ", module='" + module + '\'' +
                 ", level=" + level +
-                ", clazz='" + clazz + '\'' +
+                ", clazz=" + clazz +
                 ", method='" + method + '\'' +
                 ", context=" + context +
                 '}';

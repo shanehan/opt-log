@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
-import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -17,26 +16,22 @@ import java.util.concurrent.TimeUnit;
 public class OptLogRecordHandler implements IOptLogRecordHandler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OptLogRecordHandler.class);
-    private BlockingQueue<OptLogRecord> blockingQueue;
     private OptLogConfig optLogConfig;
+    private List<IOptLogRecorder> recorders;
+    private ThreadPoolExecutor threadPoolExecutor;
 
     public OptLogRecordHandler(List<IOptLogRecorder> recorders, OptLogConfig optLogConfig) {
         this.optLogConfig = optLogConfig;
-        blockingQueue = new LinkedBlockingQueue<>();
-        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(1, 1,
+        this.recorders = recorders;
+        threadPoolExecutor = new ThreadPoolExecutor(1, 1,
                 0L, TimeUnit.MILLISECONDS,
-                new LinkedBlockingQueue<>(1), new OptRecordTreadFactory(),
+                new LinkedBlockingQueue<>(), new OptRecordTreadFactory(),
                 new ThreadPoolExecutor.DiscardPolicy());
-        RecordWorker worker = new RecordWorker(recorders, blockingQueue);
-        threadPoolExecutor.submit(worker);
     }
 
     @Override
     public void recordOptLog(OptLogRecord record) {
-        try {
-            blockingQueue.put(record);
-        } catch (InterruptedException ignored) {
-        }
+        threadPoolExecutor.submit(new RecordWorker(record));
     }
 
     private static class OptRecordTreadFactory implements ThreadFactory {
@@ -48,26 +43,17 @@ public class OptLogRecordHandler implements IOptLogRecordHandler {
     }
 
 
-    private static class RecordWorker implements Runnable {
+    private class RecordWorker implements Runnable {
 
-        private List<IOptLogRecorder> recorders;
-        private BlockingQueue<OptLogRecord> blockingQueue;
+        private OptLogRecord record;
 
-        public RecordWorker(List<IOptLogRecorder> recorders, BlockingQueue<OptLogRecord> blockingQueue) {
-            this.recorders = recorders;
-            this.blockingQueue = blockingQueue;
+        public RecordWorker(OptLogRecord record) {
+            this.record = record;
         }
 
         @Override
         public void run() {
-            while (true) {
-                try {
-                    OptLogRecord record = blockingQueue.take();
-                    doRecord(record);
-                } catch (Exception e) {
-                    LOGGER.error(e.getMessage(), e);
-                }
-            }
+            doRecord(record);
         }
 
         private void doRecord(OptLogRecord record) {
@@ -79,7 +65,6 @@ public class OptLogRecordHandler implements IOptLogRecordHandler {
                 } catch (Exception e) {
                     LOGGER.error(e.getMessage(), e);
                 }
-
             }
         }
 
